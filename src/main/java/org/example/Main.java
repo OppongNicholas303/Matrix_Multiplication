@@ -30,16 +30,13 @@ public class Main {
 
         int [][] matrixB = new int[matrixBRow][matrixBCol];
 
-        int [][] matrixC = new int[matrixARow][matrixACol];
+
 
         inputFun(matrixA);
         inputFun(matrixB);
 
 
-
-        System.out.println(Arrays.toString(matrixA[0]));
-        int [][] result = matrixMultip(matrixA, matrixB, matrixC);
-
+        System.out.println(Arrays.deepToString( matrixMultip(matrixA, matrixB)));
 //        System.out.println(Arrays.toString(result[0]));
 //        System.out.println(Arrays.toString(result[1]));
 
@@ -55,30 +52,20 @@ public class Main {
         }
     }
 
-    public static int[][] matrixMultip(int[][] matrixA, int[][] matrixB, int[][] matrixC){
-        System.out.println("MatrixA "+ Arrays.deepToString(matrixA));
-        System.out.println("MatrixB "+Arrays.deepToString(matrixB));
+    public static int[][] matrixMultip(int[][] matrixA, int[][] matrixB){
+
+        int [][] matrixC = new int[matrixA.length][matrixB[0].length];
 
         for(int i=0; i<matrixA.length; i++){
-            int []row = matrixA[i];
-
-
-            for(int j=0; i<matrixB[0].length; j++){
-                int temp = 0;
-                int [] col = new int[matrixB.length];
-
-               for(int k = 0; i<matrixB.length; k++){
-                   System.out.println(j);
-                   col[k] = matrixB[k][j];
-               }
-
-               for(int t =0; t<col.length; t++ ){
-                   temp += row[t]+col[t];
-               }
-               matrixC[i][j] = temp;
+            int [] col = matrixA[i];
+            for(int j=0; j<matrixB[0].length; j++){
+                matrixC[i][j] =0;
+                for (int k=0; k<matrixB.length; k++){
+                    matrixC[i][j] += col[k] * matrixB[k][j];
+                }
             }
-
         }
+
         return matrixC;
     }
 }
