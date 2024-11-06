@@ -8,6 +8,7 @@ public class Main {
 
         int matrixARow, matrixACol, matrixBRow, matrixBCol;
 
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Enter the size of matrixA row: ");
