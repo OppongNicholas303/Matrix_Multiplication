@@ -8,50 +8,52 @@ public class Main {
 
         int matrixARow, matrixACol, matrixBRow, matrixBCol;
 
-
         Scanner sc = new Scanner(System.in);
 
+        // Input rows and columns for Matrix A
         System.out.println("Enter the size of matrixA row: ");
-
         matrixARow = sc.nextInt();
-
         System.out.println("Enter the size of matrixA column: ");
-         matrixACol = sc.nextInt();
+        matrixACol = sc.nextInt();
 
+        // Initialize Matrix A with user-defined dimensions
         int [][] matrixA = new int[matrixARow][matrixACol];
 
+        // Input elements for Matrix A
+        inputFun(matrixA, "matrix A");
+
+        // Ensure Matrix B rows match Matrix A columns for multiplication compatibility
         do{
-            System.out.println("Enter the size of matrixB row: ");
+            System.out.println("Enter the size of matrixB row, let it match matrixA column: ");
             matrixBRow = sc.nextInt();
         }while (matrixACol != matrixBRow);
 
+        // Input columns for Matrix B
         System.out.println("Enter the size of matrixB column: ");
         matrixBCol = sc.nextInt();
 
+        // Initialize Matrix B result with user-defined dimensions
         int [][] matrixB = new int[matrixBRow][matrixBCol];
 
+        // Input elements for Matrix B
+        inputFun(matrixB, "matrix B");
 
-
-        inputFun(matrixA);
-        inputFun(matrixB);
-
-
-        System.out.println(Arrays.deepToString( matrixMultip(matrixA, matrixB)));
-//        System.out.println(Arrays.toString(result[0]));
-//        System.out.println(Arrays.toString(result[1]));
-
-
+        System.out.println("Matrix A x Matrix B is : " + Arrays.deepToString( matrixMultip(matrixA, matrixB)));
     }
-    public static void inputFun(int[][] matrix){
+
+    // Method to take matrix input from the user
+    public static void inputFun(int[][] matrix, String matrixName){
         Scanner sc = new Scanner(System.in);
         for(int i=0; i<matrix.length; i++){
             for(int j = 0; j<matrix[i].length; j++){
-                System.out.println("Enter matrixA column " + (i+1) + " i.e; " + "["+i+"]"+"["+j+"]" + " value");
+                System.out.println("Enter " + matrixName + " column " + (i+1) + " i.e; " + "["+i+"]"+"["+j+"]" + " element");
                 matrix[i][j] = sc.nextInt();
             }
         }
+        System.out.println(matrixName + " : " + Arrays.deepToString(matrix));
     }
 
+    // Method to perform matrix multiplication
     public static int[][] matrixMultip(int[][] matrixA, int[][] matrixB){
 
         int [][] matrixC = new int[matrixA.length][matrixB[0].length];
